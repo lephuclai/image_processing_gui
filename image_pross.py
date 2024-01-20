@@ -1,7 +1,6 @@
 import tkinter as tk
 from tkinter import filedialog
-from tkinter import colorchooser
-from PIL import Image, ImageOps, ImageTk, ImageFilter
+from PIL import Image, ImageTk
 from tkinter import ttk
 import cv2 
 
@@ -16,14 +15,15 @@ file_path = ""
 def add_image():
     global file_path
     file_path = filedialog.askopenfilename()
-    image = Image.open(file_path)
-    canvas.config(width=image.width, height=image.height)
-    image = ImageTk.PhotoImage(image)
+    global org_image
+    org_image=Image.open(file_path)
+    canvas.config(width=org_image.width, height=org_image.height)
+    image = ImageTk.PhotoImage(org_image)
     canvas.image = image
     canvas.create_image(0, 0, image=image, anchor="nw")
     
 def view_original():
-    image = Image.open(file_path)
+    image = org_image
     canvas.config(width=image.width, height=image.height)
     image = ImageTk.PhotoImage(image)
     canvas.image = image
@@ -37,7 +37,15 @@ def image_process():
     image = ImageTk.PhotoImage(image)
     canvas.image = image
     canvas.create_image(0, 0, image=image, anchor="nw")
-
+    
+def save_as_png(canvas):
+    # save postscipt image 
+    canvas.postscript(file = 'results.eps', pagewidth=org_image.width, pageheight=org_image.height) 
+    # use PIL to convert to PNG 
+    img = Image.open('results.eps') 
+    # img.convert()
+    img.save('results.png', 'png') 
+    
 left_frame = tk.Frame(root, width=200, height=600, bg="white")
 left_frame.pack(side="left", fill="y")
 
@@ -53,7 +61,7 @@ image_orginal.pack(pady=15)
 covert_button = tk.Button(left_frame, text="Convert Gray", command=image_process, bg="white")
 covert_button.pack(pady=15)
 
-save_button = tk.Button(left_frame, text="Save Image", bg="white")
+save_button = tk.Button(left_frame, text="Save Image", command=lambda: save_as_png(canvas), bg="white")
 save_button.pack(pady=15)
 
 root.mainloop()

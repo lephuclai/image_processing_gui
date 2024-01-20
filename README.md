@@ -1,1 +1,3 @@
-# image_processing_gui
+# Image Processing Program GUI
+
+
