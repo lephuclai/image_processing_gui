@@ -1,6 +1,6 @@
 # Image Processing Program GUI
 
-This is a simple GUI for Image Processing Program using Tkinter (For the code in this repo the “Image processing” part is just converting the image of yours choice to grayscale)
+This is a simple GUI for Image Processing Program using Tkinter (For the code in this repo the “Image processing” part is just converting the image of your choice to grayscale)
 
  
 
