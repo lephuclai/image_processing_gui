@@ -16,6 +16,6 @@ This is a simple GUI for Image Processing Program using Tkinter (For the code in
 
 # 3. Screen capture:
 
-![Untitled](./image/Untitled.png)
+![Untitled](./readme_image/Untitled.png)
 
-![Untitled](./image/Untitled1.png)
+![Untitled](./readme_image/Untitled1.png)
